@@ -1,2 +1,1 @@
-# i_am_rich Flutter application
-
+# flutter-course-projects
