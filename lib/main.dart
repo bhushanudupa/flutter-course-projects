@@ -1,95 +1,30 @@
-import 'package:destini_challenge_starting/story_brain.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(Destini());
+import 'screens/input_page.dart';
 
-class Destini extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark(),
-      home: StoryPage(),
-    );
-  }
-}
+void main() => runApp(BMICalculator());
 
-StoryBrain storyBrain = new StoryBrain();
-
-class StoryPage extends StatefulWidget {
-  _StoryPageState createState() => _StoryPageState();
-}
-
-class _StoryPageState extends State<StoryPage> {
+class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('images/background.png'),),
-        ),
-        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 15.0),
-        constraints: BoxConstraints.expand(),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Expanded(
-                flex: 12,
-                child: Center(
-                  child: Text(
-                    storyBrain.getStory(),
-                    style: TextStyle(
-                      fontSize: 25.0,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: FlatButton(
-                  onPressed: () {
-                    //Choice 1 made by user.
-                    setState(() {
-                      storyBrain.nextStory(1);
-                    });
-                  },
-                  color: Colors.red,
-                  child: Text(
-                    storyBrain.getChoice1(),
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Expanded(
-                flex: 2,
-                child: Visibility(
-                  visible: storyBrain.buttonShouldBeVisible(),
-                  child: FlatButton(
-                    onPressed: () {
-                      //Choice 2 made by user.
-                    setState(() {
-                      storyBrain.nextStory(2);
-                    });
-                    },
-                    color: Colors.blue,
-                    child: Text(
-                      storyBrain.getChoice2(),
-                      style: TextStyle(
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+    return MaterialApp(
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Color(0xFF0A0E21),
+        scaffoldBackgroundColor: Color(0xFF0A0E21),
+        sliderTheme: SliderTheme.of(context).copyWith(
+          activeTrackColor: Colors.white,
+          thumbColor: Color(0xFFEB1555),
+          overlayColor: Color(0x29EB1555),
+          thumbShape: RoundSliderThumbShape(
+            enabledThumbRadius: 15.0,
+          ),
+          overlayShape: RoundSliderOverlayShape(
+            overlayRadius: 30.0,
           ),
         ),
       ),
+      home: InputPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
